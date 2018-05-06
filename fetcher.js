@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client();
-const auth = require(auth.token);
+const auth = require('auth.token');
 
 client.on('ready', () => {
 	console.log('Ready!');
