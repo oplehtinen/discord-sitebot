@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client();
-const auth = require('auth.token');
+const auth = require('./authtoken.js');
 
 client.on('ready', () => {
 	console.log('Ready!');
@@ -20,5 +20,4 @@ client.on('ready', () => {
 		})
 		.catch(console.error);
 });
-
-client.login(auth);
+client.login(auth.token);
