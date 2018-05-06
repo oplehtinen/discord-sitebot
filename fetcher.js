@@ -17,7 +17,11 @@ client.on('ready', () => {
 			.then(messages => {
 				messages.array().forEach(message => {
 				// console.log(message.author.toString() + ': ' + message.content + message.createdAt);
-					fs.writeFile('posts/' + message.createdTimestamp + '.md', messageHandler(message.content), function(err) {
+					const time = new Date(message.createdTimestamp);
+					const year = time.getUTCFullYear();
+					const month = time.getUTCMonth() + 1;
+					const day = time.getUTCDate();
+					fs.writeFile('posts/' + year + '-' + month + '-' + day + '-' + message.content.toString().replace(/[^a-zA-Z0-9]/g, '') + '.md', messageHandler(message.content), function(err) {
 						if (err) throw err;
 						//	console.log(message.content);
 					});
