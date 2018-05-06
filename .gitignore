@@ -48,3 +48,6 @@ Temporary Items
 
 # Token file
 auth.token
+
+# Don't pass content
+.md
