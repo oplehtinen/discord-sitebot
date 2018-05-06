@@ -50,4 +50,4 @@ Temporary Items
 auth.token
 
 # Don't pass content
-.md
+*.md
