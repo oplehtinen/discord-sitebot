@@ -13,6 +13,9 @@ module.exports = function messageHandler(msg) {
 	}
 
 	// SPOTIFY embed
+	if (msg.includes('spotify.com')) {
+		msg = '<iframe src="' + msg + '" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+	}
 	msg = '---\n---\n' + msg;
 	return msg;
 };
