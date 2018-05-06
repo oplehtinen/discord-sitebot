@@ -47,7 +47,7 @@ Temporary Items
 .apdisk
 
 # Token file
-auth.token
+authtoken.js
 
 # Don't pass content
 *.md
