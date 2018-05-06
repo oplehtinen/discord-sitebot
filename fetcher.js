@@ -8,10 +8,10 @@ const settings = require('./settings.js');
 client.on('ready', () => {
 	console.log('Ready!');
 	for (const channel in settings.general.channels) {
-		scanChannel(channel);
+		writeContent(channel);
 	}
 
-	function scanChannel(channel) {
+	function writeContent(channel) {
 		const generalChan = client.channels.find('name', channel);
 		generalChan.fetchMessages({ limit:0 })
 			.then(messages => {
