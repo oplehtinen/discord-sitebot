@@ -51,3 +51,9 @@ authtoken.js
 
 # Don't pass content
 *.md
+
+#node
+node_modules
+coverage
+npm-debug.log
+package-lock.json
