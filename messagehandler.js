@@ -41,7 +41,7 @@ module.exports = function messageHandler(msg) {
 				reject('error');
 			}
 			else {
-				msg = '---\n layout: post \n ---\n title: "' + msg + '"\n---\n' + msg;
+				msg = '---\n layout: post \n title: "' + msg + '"\n---\n' + msg;
 				resolve(msg);
 			}
 
