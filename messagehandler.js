@@ -1,10 +1,9 @@
-const getMetadata = require('./metadata.js');
 const cheerio = require('cheerio');
 const rp = require('request-promise');
 
 module.exports = function messageHandler(msg) {
 	msg = msg.toString();
-	let url = msg.match(/\bhttps?:\/\/\S+/gi);
+	const url = msg.match(/\bhttps?:\/\/\S+/gi);
 
 	if (url !== null) {
 		const options = {
@@ -15,15 +14,7 @@ module.exports = function messageHandler(msg) {
 		};
 		return rp(options)
 			.then(function($) {
-				console.log('1 ' + url);
 				const title = $('title').text();
-				// return $('title').text();
-				// console.log('2 ' + url);
-				console.log(title);
-				// return title;
-
-
-				// url = url.toString();
 
 				// YOUTUBE EMBED
 				if (url.includes('youtube.com') || url.includes('youtu.be')) {
@@ -39,22 +30,17 @@ module.exports = function messageHandler(msg) {
 				if (url.includes('spotify.com')) {
 					msg = msg + '\n<iframe src="' + url + '" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
 				}
-				console.log('WAT:' + title);
-				// console.log(url);
-				// const title =  getMetadata(url);
 				return '---\n title: ' + title + '\n---\n' + msg;
-				// console.log(msg);
-				// getData(url);
-
-				// return msg;
 			});
 	}
 	else {
+		// MAKE THIS PROMISE USEFUL SOME DAY
 		return new Promise(function(resolve, reject) {
 			if (msg.length > 15000) {
 				reject('error');
 			}
 			else {
+				msg = '---\n title: ' + msg + '\n---\n' + msg;
 				resolve(msg);
 			}
 
