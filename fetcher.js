@@ -21,10 +21,11 @@ client.on('ready', () => {
 					const year = time.getUTCFullYear();
 					const month = time.getUTCMonth() + 1;
 					const day = time.getUTCDate();
-					const hourminute = time.getUTCHours() + time.getUTCMinutes();
-					fs.writeFile('posts/' + year + '-' + month + '-' + day + '-' + hourminute + '.md', messageHandler(message.content), function(err) {
-						if (err) throw err;
-						//	console.log(message.content);
+					const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
+					messageHandler(message.content).then(function(result) {
+						fs.writeFile('posts/' + year + '-' + month + '-' + day + '-' + hourminute + '.md', result, function(err) {
+							if (err) throw err;
+						});
 					});
 
 				});
