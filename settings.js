@@ -3,4 +3,7 @@ module.exports.general = {
 		'general': 'static',
 		'music': 'post',
 	},
+	'output': {
+		'path:': '/home/example/bla',
+	},
 };
