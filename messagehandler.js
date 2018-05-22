@@ -3,7 +3,7 @@ const rp = require('request-promise');
 
 module.exports = function messageHandler(msg) {
 	msg = msg.toString();
-	const url = msg.match(/\bhttps?:\/\/\S+/gi);
+	let url = msg.match(/\bhttps?:\/\/\S+/gi);
 
 	if (url !== null) {
 		const options = {
@@ -15,6 +15,7 @@ module.exports = function messageHandler(msg) {
 		return rp(options)
 			.then(function($) {
 				const title = $('title').text();
+				url = url.toString();
 
 				// YOUTUBE EMBED
 				if (url.includes('youtube.com') || url.includes('youtu.be')) {
@@ -30,7 +31,7 @@ module.exports = function messageHandler(msg) {
 				if (url.includes('spotify.com')) {
 					msg = msg + '\n<iframe src="' + url + '" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
 				}
-				return '---\n title: ' + title + '\n---\n' + msg;
+				return '---\n layout: post \n title: "' + title + '"\n---\n' + msg;
 			});
 	}
 	else {
@@ -40,7 +41,7 @@ module.exports = function messageHandler(msg) {
 				reject('error');
 			}
 			else {
-				msg = '---\n title: ' + msg + '\n---\n' + msg;
+				msg = '---\n layout: post \n ---\n title: "' + msg + '"\n---\n' + msg;
 				resolve(msg);
 			}
 
