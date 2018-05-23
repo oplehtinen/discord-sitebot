@@ -22,7 +22,7 @@ module.exports = function messageHandler(msg) {
 					const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
 					const id = url.match(regExp);
 					if (id && id[2].length == 11) {
-						msg = '<iframe width="560" height="315" src="//www.youtube.com/embed/' + id[2] + '" frameborder="0" allowfullscreen></iframe>';
+						msg = msg + '<iframe width="560" height="315" src="//www.youtube.com/embed/' + id[2] + '" frameborder="0" allowfullscreen></iframe>';
 					}
 
 				}
@@ -38,7 +38,7 @@ module.exports = function messageHandler(msg) {
 		// MAKE THIS PROMISE USEFUL SOME DAY
 		return new Promise(function(resolve, reject) {
 			if (msg.length > 15000) {
-				reject('error');
+				reject('error: Message too long to parse');
 			}
 			else {
 				msg = '---\n layout: post \n title: "' + msg + '"\n---\n' + msg;
