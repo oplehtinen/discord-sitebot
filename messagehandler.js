@@ -62,11 +62,13 @@ module.exports = function messageHandler(msg) {
 				reject('error: Message too long to parse');
 			}
 			else {
-				msg = '---\n layout: post \n title: "' + msg + '"\n---\n' + msg;
+				msg = '---\n layout: post \n title: "' + titleCreator(msg) + '"\n---\n' + msg;
 				resolve(msg);
 			}
 
 		});
 	}
-
+	function titleCreator(str) {
+		return str.replace(/[^0-9a-zA-Z\xC0-\xFF -]/g, '');
+	}
 };
