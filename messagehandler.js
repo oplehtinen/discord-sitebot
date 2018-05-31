@@ -1,7 +1,3 @@
-const cheerio = require('cheerio');
-const rp = require('request-promise');
-const Autolinker = require('autolinker');
-
 module.exports = function messageHandler(msg) {
 
 	// msg = msg.toString();
@@ -14,7 +10,6 @@ module.exports = function messageHandler(msg) {
 	if (embed.embeds[0] !== undefined) {
 		const title = embed.embeds[0].title;
 		const embedThis = embed.embeds[0].url;
-		let url = msg.match(/\bhttps?:\/\/\S+/gi);
 		return new Promise(function(resolve, reject) {
 			if (msg.length === 0) {
 				reject('error: NO MESSAGE');
