@@ -1,6 +1,6 @@
 module.exports.general = {
 	'channels': {
-		'general': 'static',
+		// 'general': 'static',
 		'music': 'post',
 	},
 	'output': {

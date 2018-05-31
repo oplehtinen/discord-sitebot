@@ -25,7 +25,8 @@ function writeContent(channel) {
 				const month = time.getUTCMonth() + 1;
 				const day = time.getUTCDate();
 				const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
-				messageHandler(message.content).then(function(result) {
+				// console.log(message.embeds[0].description);
+				messageHandler(message).then(function(result) {
 					fs.writeFile('posts/' + year + '-' + month + '-' + day + '-' + hourminute + '.md', result, function(err) {
 						if (err) throw err;
 					});
