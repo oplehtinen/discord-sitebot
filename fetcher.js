@@ -17,11 +17,10 @@ client.login(auth);
 function writeContent(channel) {
 	const generalChan = client.channels.find('name', channel);
 	const channelType = settings.general.channels[channel];
-
-	generalChan.fetchMessages({ limit:0 })
+	generalChan.fetchMessages({ limit:100 })
 		.then(messages => {
 			messages.array().forEach(message => {
-			// console.log(message.author.toString() + ': ' + message.content + message.createdAt);
+
 				const time = new Date(message.createdTimestamp);
 				const year = time.getUTCFullYear();
 				const month = time.getUTCMonth() + 1;
@@ -35,7 +34,7 @@ function writeContent(channel) {
 					});
 				})
 					.catch(console.error);
-
+			//	TODO: for each published post, message.react('✅');
 			});
 		})
 		.catch(console.error);

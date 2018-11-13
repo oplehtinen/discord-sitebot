@@ -2,16 +2,16 @@ function frontMatter(message, ...metaData) {
 	return '--- \n' + metaData.join('\n') + '\n---\n' + message;
 }
 function titleCreator(str) {
-	return str.replace(/[^0-9a-zA-Z\xC0-\xFF -]/g, '');
+	str = str.replace(/[^0-9a-zA-Z\xC0-\xFF -]/g, '');
+	str = str.split('\n')[0];
+	return str.substring(0, 50);
 }
 
 module.exports = function messageHandler(msg, type) {
 
 	// msg = msg.toString();
 	const embed = msg;
-
 	msg = msg.content;
-
 
 	if (embed.embeds[0] !== undefined) {
 		const title = embed.embeds[0].title;
@@ -45,7 +45,7 @@ module.exports = function messageHandler(msg, type) {
 					msg = embedThis + '\n SoundCloud widgets are stupid.';
 				}
 
-				resolve(frontMatter(msg, 'title: ' + title, 'author: ' + user));
+				resolve(frontMatter(msg, 'title: ' + titleCreator(title), 'author: ' + user));
 			}
 		});
 	}
@@ -64,7 +64,7 @@ module.exports = function messageHandler(msg, type) {
 	}
 	else {
 		return new Promise(function(resolve, reject) {
-			resolve('Done: No more embed-only messages to be found.');
+			reject('Done: No more embed-only messages to be found.');
 		});
 	}
 
