@@ -11,11 +11,13 @@ client.on('ready', () => {
 		writeContent(channel);
 	}
 });
-client.login(auth.token);
+client.login(auth);
 
 
 function writeContent(channel) {
 	const generalChan = client.channels.find('name', channel);
+	const channelType = settings.general.channels[channel];
+
 	generalChan.fetchMessages({ limit:0 })
 		.then(messages => {
 			messages.array().forEach(message => {
@@ -26,11 +28,13 @@ function writeContent(channel) {
 				const day = time.getUTCDate();
 				const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
 				// console.log(message.embeds[0].description);
-				messageHandler(message).then(function(result) {
+				messageHandler(message, channelType).then(function(result) {
 					fs.writeFile('posts/' + year + '-' + month + '-' + day + '-' + hourminute + '.md', result, function(err) {
+						// console.log(result);
 						if (err) throw err;
 					});
-				});
+				})
+					.catch(console.error);
 
 			});
 		})

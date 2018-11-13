@@ -1,15 +1,24 @@
-module.exports = function messageHandler(msg) {
+function frontMatter(message, ...metaData) {
+	return '--- \n' + metaData.join('\n') + '\n---\n' + message;
+}
+function titleCreator(str) {
+	return str.replace(/[^0-9a-zA-Z\xC0-\xFF -]/g, '');
+}
+
+module.exports = function messageHandler(msg, type) {
 
 	// msg = msg.toString();
 	const embed = msg;
 
 	msg = msg.content;
-	console.log(msg);
 
 
 	if (embed.embeds[0] !== undefined) {
 		const title = embed.embeds[0].title;
 		const embedThis = embed.embeds[0].url;
+		const user = embed.embeds[0].message.author.username;
+
+
 		return new Promise(function(resolve, reject) {
 			if (msg.length === 0) {
 				reject('error: NO MESSAGE');
@@ -26,22 +35,21 @@ module.exports = function messageHandler(msg) {
 					if (id && id[2].length == 11) {
 						msg = msg + '\n<iframe width="560" height="315" src="//www.youtube.com/embed/' + id[2] + '" frameborder="0" allowfullscreen></iframe>';
 					}
-
 				}
-				// SPOTIFY embed
+
 				if (embedThis.includes('spotify.com')) {
 					msg = msg + '\n<iframe src="' + embedThis + '" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
-					// console.log(title, msg);
 				}
 
 				if (embedThis.includes('soundcloud.com')) {
 					msg = embedThis + '\n SoundCloud widgets are stupid.';
 				}
-				resolve('---\n layout: post \n title: "' + title + '"\n---\n' + msg);
+
+				resolve(frontMatter(msg, 'title: ' + title, 'author: ' + user));
 			}
 		});
 	}
-	else {
+	else if (type !== 'media') {
 		// MAKE THIS PROMISE USEFUL SOME DAY
 		return new Promise(function(resolve, reject) {
 			if (msg.length > 15000) {
@@ -54,7 +62,10 @@ module.exports = function messageHandler(msg) {
 
 		});
 	}
-	function titleCreator(str) {
-		return str.replace(/[^0-9a-zA-Z\xC0-\xFF -]/g, '');
+	else {
+		return new Promise(function(resolve, reject) {
+			resolve('Done: No more embed-only messages to be found.');
+		});
 	}
+
 };
