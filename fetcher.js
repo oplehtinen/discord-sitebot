@@ -8,9 +8,14 @@ const settings = require('./settings.js');
 
 client.on('ready', () => {
 	console.log('Ready!');
-	for (const channel in settings.general.channels) {
+	/* for (const channel in settings.general.channels) {
 		writeContent(channel);
+	} */
+	const channels = findSiteChannels();
+	for (let i = 0; i < channels.length; i++) {
+		writeContent(channels[i]);
 	}
+	console.log(findSiteChannels());
 	client.destroy();
 });
 client.login(auth);
@@ -19,6 +24,11 @@ client.login(auth);
 function writeContent(channel) {
 	const generalChan = client.channels.find('name', channel);
 	const channelType = settings.general.channels[channel];
+
+	const channelSettings = {};
+	const fromTopic = generalChan.topic.split(',').map(pair => pair.split(':'));
+	fromTopic.forEach(([key, value]) => channelSettings[key] = value);
+	console.log(channelSettings.type);
 
 
 	generalChan.fetchMessages({ limit:100 })
@@ -31,7 +41,7 @@ function writeContent(channel) {
 				const day = time.getUTCDate();
 				// const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
 				messageHandler(message, channelType).then(function(result) {
-					fs.writeFile('src/site/posts/' + result.title + '-' + year + '-' + month + '-' + day + '.md', result.content, function(err) {
+					fs.writeFile('src/site/' + (channelSettings.type === 'post' || channelSettings.type === 'media' ? 'posts/' : '') + result.title + '-' + year + '-' + month + '-' + day + '.md', result.content, function(err) {
 						if (err) throw err;
 					});
 				})
@@ -40,4 +50,14 @@ function writeContent(channel) {
 			});
 		})
 		.catch(console.error);
+}
+
+function findSiteChannels() {
+	const channels = [];
+	client.channels.forEach(channel => {
+		if(channel.permissionsFor(client.user).has('MANAGE_CHANNELS')) {
+			channels.push(channel.name);
+		}
+	});
+	return channels;
 }
