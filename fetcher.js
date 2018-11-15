@@ -17,6 +17,8 @@ client.login(auth);
 function writeContent(channel) {
 	const generalChan = client.channels.find('name', channel);
 	const channelType = settings.general.channels[channel];
+
+
 	generalChan.fetchMessages({ limit:100 })
 		.then(messages => {
 			messages.array().forEach(message => {
