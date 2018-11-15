@@ -26,11 +26,9 @@ function writeContent(channel) {
 				const year = time.getUTCFullYear();
 				const month = time.getUTCMonth() + 1;
 				const day = time.getUTCDate();
-				const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
-				// console.log(message.embeds[0].description);
+				// const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
 				messageHandler(message, channelType).then(function(result) {
-					fs.writeFile('src/site' + year + '-' + month + '-' + day + '-' + hourminute + '.md', result.content, function(err) {
-						// console.log(result);
+					fs.writeFile('src/site/' + result.title + '-' + year + '-' + month + '-' + day + '.md', result.content, function(err) {
 						if (err) throw err;
 					});
 				})

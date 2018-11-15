@@ -9,7 +9,6 @@ function titleCreator(str) {
 
 module.exports = function messageHandler(msg, type) {
 
-	// msg = msg.toString();
 	const embed = msg;
 	msg = msg.content;
 
