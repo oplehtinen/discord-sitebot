@@ -49,8 +49,7 @@ Temporary Items
 # Token file
 authtoken.js
 
-# Don't pass content
-*.md
+
 
 #node
 node_modules
