@@ -26,6 +26,10 @@ module.exports = function messageHandler(msg, type) {
 				if (embedThis.length === msg.length) {
 					msg = '';
 				}
+				
+				if (msg.includes(embedThis)) {
+					msg = msg.replace(embedThis, '');
+				}
 
 				if (embedThis.includes('youtube.com') || embedThis.includes('youtu.be')) {
 					const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
