@@ -23,7 +23,7 @@ client.login(auth);
 
 function writeContent(channel) {
 	const generalChan = client.channels.find('name', channel);
-	const channelType = settings.general.channels[channel];
+	// const channelType = settings.general.channels[channel];
 
 	const channelSettings = {};
 	const fromTopic = generalChan.topic.split(',').map(pair => pair.split(':'));
@@ -41,7 +41,7 @@ function writeContent(channel) {
 				const day = time.getUTCDate();
 				const date = year + '-' + month + '-' + day;
 				// const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
-				messageHandler(message, channelType, date).then(function(result) {
+				messageHandler(message, channelSettings.type, date).then(function(result) {
 					fs.writeFile('src/site/' + (channelSettings.type === 'post' || channelSettings.type === 'media' ? 'posts/' : '') + result.title + '-' + date + '.md', result.content, function(err) {
 						if (err) throw err;
 					});

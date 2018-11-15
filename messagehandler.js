@@ -54,11 +54,13 @@ module.exports = function messageHandler(msg, type, date) {
 					msg = embedThis + '\n SoundCloud widgets are stupid.';
 				}
 
-				resolve({ "content": frontMatter(msg, 'title: ' + titleCreator(title), 
+				resolve({ "content": frontMatter(msg, 
+						'title: ' + titleCreator(title),
 						   'author: ' + user,
 						   "type: " + type,
-						   "title: " + titleCreator(title).replace(' ','_'),
-						   "date:" + date)
+						   "date:" + date),
+						   // FRONT MATTER ABOVE THIS
+						   "title": titleCreator(title).replace(' ','_'),
 						});
 			}
 		});
