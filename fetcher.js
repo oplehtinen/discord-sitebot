@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client();
-const auth = require('./authtoken.js');
+// const auth = require('./authtoken.js');
+const auth = process.env.AUTH_TOKEN;
 const messageHandler = require('./messagehandler.js');
 const settings = require('./settings.js');
 
@@ -10,6 +11,7 @@ client.on('ready', () => {
 	for (const channel in settings.general.channels) {
 		writeContent(channel);
 	}
+	client.destroy();
 });
 client.login(auth);
 
@@ -27,11 +29,9 @@ function writeContent(channel) {
 				const year = time.getUTCFullYear();
 				const month = time.getUTCMonth() + 1;
 				const day = time.getUTCDate();
-				const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
-				// console.log(message.embeds[0].description);
+				// const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
 				messageHandler(message, channelType).then(function(result) {
-					fs.writeFile('posts/' + year + '-' + month + '-' + day + '-' + hourminute + '.md', result, function(err) {
-						// console.log(result);
+					fs.writeFile('src/site/posts/' + result.title + '-' + year + '-' + month + '-' + day + '.md', result.content, function(err) {
 						if (err) throw err;
 					});
 				})

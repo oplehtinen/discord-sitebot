@@ -9,7 +9,6 @@ function titleCreator(str) {
 
 module.exports = function messageHandler(msg, type) {
 
-	// msg = msg.toString();
 	const embed = msg;
 	msg = msg.content;
 
@@ -31,6 +30,10 @@ module.exports = function messageHandler(msg, type) {
 
 				if (embedThis.length === msg.length) {
 					msg = '';
+				}
+				
+				if (msg.includes(embedThis)) {
+					msg = msg.replace(embedThis, '');
 				}
 
 				if (msg.includes(embedThis)) {
@@ -54,7 +57,10 @@ module.exports = function messageHandler(msg, type) {
 					msg = embedThis + '\n SoundCloud widgets are stupid.';
 				}
 
-				resolve(frontMatter(msg, 'title: ' + titleCreator(title), 'author: ' + user));
+				resolve({ "content": frontMatter(msg, 'title: ' + titleCreator(title), 'author: ' + user),
+						   "type": type,
+						   "title": titleCreator(title).replace(' ','_'),
+						});
 			}
 		});
 	}
