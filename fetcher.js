@@ -37,8 +37,8 @@ function writeContent(channel) {
 
 				const time = new Date(message.createdTimestamp);
 				const year = time.getUTCFullYear();
-				const month = time.getUTCMonth() + 1;
-				const day = time.getUTCDate();
+				const month = ('0' + (time.getUTCMonth() + 1).toString()).slice(-2);
+				const day = ('0' + (time.getUTCDate()).toString()).slice(-2);
 				const date = year + '-' + month + '-' + day;
 				// const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
 				messageHandler(message, channelSettings.type, date).then(function(result) {

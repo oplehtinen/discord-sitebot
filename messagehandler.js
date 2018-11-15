@@ -60,7 +60,7 @@ module.exports = function messageHandler(msg, type, date) {
 						   // "type: " + type,
 						   "date: " + date),
 						   // FRONT MATTER ABOVE THIS
-						   "title": titleCreator(title).replace(' ','_'),
+						   "title": titleCreator(title).replace('/\s/g','_'),
 						});
 			}
 		});
@@ -78,7 +78,7 @@ module.exports = function messageHandler(msg, type, date) {
 					   // "type: " + type,
 					   "date: " + date),
 					   // FRONT MATTER ABOVE THIS
-					   "title": titleCreator(msg).replace(' ','_'),
+					   "title": titleCreator(msg).replace('/\s/g','_'),
 					});
 			}
 
