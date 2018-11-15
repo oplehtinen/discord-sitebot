@@ -19,14 +19,23 @@ module.exports = function messageHandler(msg, type) {
 
 
 		return new Promise(function(resolve, reject) {
+			console.log(embedThis);
+
 			if (msg.length === 0) {
 				reject('error: NO MESSAGE');
 			}
+
+
 			else {
+
 				if (embedThis.length === msg.length) {
 					msg = '';
 				}
 				
+				if (msg.includes(embedThis)) {
+					msg = msg.replace(embedThis, '');
+				}
+
 				if (msg.includes(embedThis)) {
 					msg = msg.replace(embedThis, '');
 				}
@@ -66,11 +75,6 @@ module.exports = function messageHandler(msg, type) {
 				resolve(msg);
 			}
 
-		});
-	}
-	else {
-		return new Promise(function(resolve, reject) {
-			reject('Done: No more embed-only messages to be found.');
 		});
 	}
 

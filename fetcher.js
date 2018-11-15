@@ -24,10 +24,12 @@ client.login(auth);
 function writeContent(channel) {
 	const generalChan = client.channels.find('name', channel);
 	const channelType = settings.general.channels[channel];
+
 	const channelSettings = {};
 	const fromTopic = generalChan.topic.split(',').map(pair => pair.split(':'));
 	fromTopic.forEach(([key, value]) => channelSettings[key] = value);
 	console.log(channelSettings.type);
+
 
 	generalChan.fetchMessages({ limit:100 })
 		.then(messages => {
