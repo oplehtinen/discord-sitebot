@@ -10,6 +10,7 @@ client.on('ready', () => {
 	for (const channel in settings.general.channels) {
 		writeContent(channel);
 	}
+	client.destroy();
 });
 client.login(auth);
 
@@ -28,7 +29,7 @@ function writeContent(channel) {
 				const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
 				// console.log(message.embeds[0].description);
 				messageHandler(message, channelType).then(function(result) {
-					fs.writeFile('posts/' + year + '-' + month + '-' + day + '-' + hourminute + '.md', result, function(err) {
+					fs.writeFile('src/site' + year + '-' + month + '-' + day + '-' + hourminute + '.md', result.content, function(err) {
 						// console.log(result);
 						if (err) throw err;
 					});

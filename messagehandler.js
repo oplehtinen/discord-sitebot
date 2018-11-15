@@ -45,7 +45,10 @@ module.exports = function messageHandler(msg, type) {
 					msg = embedThis + '\n SoundCloud widgets are stupid.';
 				}
 
-				resolve(frontMatter(msg, 'title: ' + titleCreator(title), 'author: ' + user));
+				resolve({ "content": frontMatter(msg, 'title: ' + titleCreator(title), 'author: ' + user),
+						   "type": type,
+						   "title": titleCreator(title),
+						});
 			}
 		});
 	}
