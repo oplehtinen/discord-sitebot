@@ -8,8 +8,12 @@ const settings = require('./settings.js');
 
 client.on('ready', () => {
 	console.log('Ready!');
-	for (const channel in settings.general.channels) {
+	/* for (const channel in settings.general.channels) {
 		writeContent(channel);
+	} */
+	const channels = findSiteChannels();
+	for (let i = 0; i < channels.length; i++) {
+		writeContent(channels[i]);
 	}
 	console.log(findSiteChannels());
 	client.destroy();
@@ -35,7 +39,7 @@ function writeContent(channel) {
 				const day = time.getUTCDate();
 				// const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
 				messageHandler(message, channelType).then(function(result) {
-					fs.writeFile('src/site/' + (channelSettings.type === 'post' ? 'posts/' : '') + result.title + '-' + year + '-' + month + '-' + day + '.md', result.content, function(err) {
+					fs.writeFile('src/site/' + (channelSettings.type === 'post' || channelSettings.type === 'media' ? 'posts/' : '') + result.title + '-' + year + '-' + month + '-' + day + '.md', result.content, function(err) {
 						if (err) throw err;
 					});
 				})
