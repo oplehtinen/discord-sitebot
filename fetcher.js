@@ -11,6 +11,7 @@ client.on('ready', () => {
 	for (const channel in settings.general.channels) {
 		writeContent(channel);
 	}
+	console.log(findSiteChannels());
 	client.destroy();
 });
 client.login(auth);
@@ -43,4 +44,14 @@ function writeContent(channel) {
 			});
 		})
 		.catch(console.error);
+}
+
+function findSiteChannels() {
+	const channels = [];
+	client.channels.forEach(channel => {
+		if(channel.permissionsFor(client.user).has('MANAGE_CHANNELS')) {
+			channels.push(channel.name);
+		}
+	});
+	return channels;
 }
