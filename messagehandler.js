@@ -12,22 +12,28 @@ module.exports = function messageHandler(msg, type, date) {
 	const embed = msg;
 	msg = msg.content;
 
-	if (embed.embeds[0] !== undefined) {
-		const title = embed.embeds[0].title;
-		const embedThis = embed.embeds[0].url;
-		const user = embed.embeds[0].message.author.username;
+	if (embed.embeds[0] !== undefined || embed.embeds !== [] || embed.embeds[0].title !== undefined) {
+		
 
 
 		return new Promise(function(resolve, reject) {
-			console.log(embedThis);
 
-			if (msg.length === 0) {
+			if (msg.length === 0 || msg === undefined || type === undefined || date === undefined  ) {
 				reject('error: NO MESSAGE');
 			}
 
 
-			else {
 
+			if (type === 'media' && (embed.embeds[0] === undefined )) {
+				reject('error: Media type defined. Not processed since no embed was found.');
+			}
+
+
+			else {
+				const title = embed.embeds[0].title;
+				const embedThis = embed.embeds[0].url;
+				const user = embed.embeds[0].message.author.username;
+				
 				if (embedThis.length === msg.length) {
 					msg = '';
 				}

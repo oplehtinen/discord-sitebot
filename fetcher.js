@@ -40,7 +40,7 @@ function writeContent(channel) {
 				const month = ('0' + (time.getUTCMonth() + 1).toString()).slice(-2);
 				const day = ('0' + (time.getUTCDate()).toString()).slice(-2);
 				const date = year + '-' + month + '-' + day;
-				// const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
+
 				messageHandler(message, channelSettings.type, date).then(function(result) {
 					fs.writeFile('src/site/' + (channelSettings.type === 'post' || channelSettings.type === 'media' ? 'posts/' : '') + result.title + '-' + date + '.md', result.content, function(err) {
 						if (err) throw err;
