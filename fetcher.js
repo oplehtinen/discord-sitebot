@@ -34,7 +34,7 @@ function writeContent(channel) {
 				const day = time.getUTCDate();
 				// const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
 				messageHandler(message, channelType).then(function(result) {
-					fs.writeFile('src/site/posts/' + result.title + '-' + year + '-' + month + '-' + day + '.md', result.content, function(err) {
+					fs.writeFile('src/site/' + (channelSettings.type === 'post' ? 'posts/' : '') + result.title + '-' + year + '-' + month + '-' + day + '.md', result.content, function(err) {
 						if (err) throw err;
 					});
 				})
