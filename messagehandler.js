@@ -46,7 +46,7 @@ module.exports = function messageHandler(msg, type) {
 
 				resolve({ "content": frontMatter(msg, 'title: ' + titleCreator(title), 'author: ' + user),
 						   "type": type,
-						   "title": titleCreator(title),
+						   "title": titleCreator(title).replace(' ','_'),
 						});
 			}
 		});
