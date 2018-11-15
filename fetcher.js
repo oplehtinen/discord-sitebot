@@ -8,6 +8,7 @@ const settings = require('./settings.js');
 
 client.on('ready', () => {
 	console.log('Ready!');
+	/* for (const channel in settings.general.channels) {
 		writeContent(channel);
 	} */
 	const channels = findSiteChannels();
