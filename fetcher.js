@@ -39,9 +39,10 @@ function writeContent(channel) {
 				const year = time.getUTCFullYear();
 				const month = time.getUTCMonth() + 1;
 				const day = time.getUTCDate();
+				const date = year + '-' + month + '-' + day;
 				// const hourminute = time.getUTCHours() + time.getUTCMinutes() + time.getUTCSeconds();
-				messageHandler(message, channelType).then(function(result) {
-					fs.writeFile('src/site/' + (channelSettings.type === 'post' || channelSettings.type === 'media' ? 'posts/' : '') + result.title + '-' + year + '-' + month + '-' + day + '.md', result.content, function(err) {
+				messageHandler(message, channelType, date).then(function(result) {
+					fs.writeFile('src/site/' + (channelSettings.type === 'post' || channelSettings.type === 'media' ? 'posts/' : '') + result.title + '-' + date + '.md', result.content, function(err) {
 						if (err) throw err;
 					});
 				})

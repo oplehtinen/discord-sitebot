@@ -7,7 +7,7 @@ function titleCreator(str) {
 	return str.substring(0, 50);
 }
 
-module.exports = function messageHandler(msg, type) {
+module.exports = function messageHandler(msg, type, date) {
 
 	const embed = msg;
 	msg = msg.content;
@@ -36,9 +36,6 @@ module.exports = function messageHandler(msg, type) {
 					msg = msg.replace(embedThis, '');
 				}
 
-				if (msg.includes(embedThis)) {
-					msg = msg.replace(embedThis, '');
-				}
 
 				if (embedThis.includes('youtube.com') || embedThis.includes('youtu.be')) {
 					const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -57,9 +54,11 @@ module.exports = function messageHandler(msg, type) {
 					msg = embedThis + '\n SoundCloud widgets are stupid.';
 				}
 
-				resolve({ "content": frontMatter(msg, 'title: ' + titleCreator(title), 'author: ' + user),
-						   "type": type,
-						   "title": titleCreator(title).replace(' ','_'),
+				resolve({ "content": frontMatter(msg, 'title: ' + titleCreator(title), 
+						   'author: ' + user,
+						   "type: " + type,
+						   "title: " + titleCreator(title).replace(' ','_'),
+						   "date:" + date)
 						});
 			}
 		});
