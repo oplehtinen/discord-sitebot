@@ -24,22 +24,12 @@ client.login(auth);
 function writeContent(channel) {
 	const generalChan = client.channels.find('name', channel);
 	const channelType = settings.general.channels[channel];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-=======
-
->>>>>>> 79b9c14d2ba2140d4409ef14a9b3aa85c500a5c6
 	const channelSettings = {};
 	const fromTopic = generalChan.topic.split(',').map(pair => pair.split(':'));
 	fromTopic.forEach(([key, value]) => channelSettings[key] = value);
 	console.log(channelSettings.type);
-<<<<<<< HEAD
->>>>>>> Chatmatter
-=======
 
->>>>>>> 79b9c14d2ba2140d4409ef14a9b3aa85c500a5c6
 
 	generalChan.fetchMessages({ limit:100 })
 		.then(messages => {
