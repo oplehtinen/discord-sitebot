@@ -4,7 +4,7 @@ const client = new Discord.Client();
 // const auth = require('./authtoken.js');
 const auth = process.env.AUTH_TOKEN;
 const messageHandler = require('./messagehandler.js');
-const settings = require('./settings.js');
+// const settings = require('./settings.js');
 
 client.on('ready', () => {
 	console.log('Ready!');

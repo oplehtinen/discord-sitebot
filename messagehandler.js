@@ -57,8 +57,8 @@ module.exports = function messageHandler(msg, type, date) {
 				resolve({ "content": frontMatter(msg, 
 						'title: ' + titleCreator(title),
 						   'author: ' + user,
-						   "type: " + type,
-						   "date:" + date),
+						   // "type: " + type,
+						   "date: " + date),
 						   // FRONT MATTER ABOVE THIS
 						   "title": titleCreator(title).replace(' ','_'),
 						});
@@ -72,8 +72,14 @@ module.exports = function messageHandler(msg, type, date) {
 				reject('error: Message too long to parse');
 			}
 			else {
-				msg = '---\n layout: post \n title: "' + titleCreator(msg) + '"\n---\n' + msg;
-				resolve(msg);
+				resolve({ "content": frontMatter(msg, 
+					'title: ' + titleCreator(msg),
+					   // 'author: ' + user,
+					   // "type: " + type,
+					   "date: " + date),
+					   // FRONT MATTER ABOVE THIS
+					   "title": titleCreator(msg).replace(' ','_'),
+					});
 			}
 
 		});
