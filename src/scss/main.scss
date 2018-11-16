@@ -56,14 +56,14 @@ h1, h2, h3 {
 }
 h1 {
   margin-top:0.4em;
-  font-size: 4em;
+  font-size: 3em;
   line-height: 0.9em;
 
   @include bp(mid) {
-    font-size: 5em;
+    font-size: 4em;
   }
   @include bp(wide) {
-    font-size: 6em;
+    font-size: 5em;
   }
 }
 
