@@ -42,7 +42,7 @@ function writeContent(channel) {
 				const date = year + '-' + month + '-' + day;
 
 				messageHandler(message, channelSettings.type, date).then(function(result) {
-					fs.writeFile('src/site/' + (channelSettings.type === 'post' || channelSettings.type === 'media' ? 'posts/' : '') + result.title + '-' + date + '.md', result.content, function(err) {
+					fs.writeFile('src/site/' + (channelSettings.type === 'post' ? 'posts/' : channelSettings.type === 'media' ? 'media/' : '') + result.title + '-' + date + '.md', result.content, function(err) {
 						if (err) throw err;
 					});
 				})

@@ -63,7 +63,7 @@ module.exports = function messageHandler(msg, type, date) {
 				resolve({ "content": frontMatter(msg, 
 						'title: ' + titleCreator(title),
 						   'author: ' + user,
-						   // "type: " + type,
+						   "tags: " + type,
 						   "date: " + date),
 						   // FRONT MATTER ABOVE THIS
 						   "title": titleCreator(title).replace('/\s/g','_'),
@@ -81,7 +81,7 @@ module.exports = function messageHandler(msg, type, date) {
 				resolve({ "content": frontMatter(msg, 
 					'title: ' + titleCreator(msg),
 					   // 'author: ' + user,
-					   // "type: " + type,
+					   "tags: " + type,
 					   "date: " + date),
 					   // FRONT MATTER ABOVE THIS
 					   "title": titleCreator(msg).replace('/\s/g','_'),

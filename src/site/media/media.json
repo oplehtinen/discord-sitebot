@@ -1,0 +1,6 @@
+{
+    "layout" : "layouts/media.md",
+    "tags" : "media",
+    "templateEngineOverride": "njk,md"
+}
+  
