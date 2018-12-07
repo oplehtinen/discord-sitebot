@@ -1,12 +1,12 @@
 @import '_variables';
 @import '_mixins';
 @import 'node_modules/sierra-library/lib/index';
-
+/*
 * {
   margin: 0;
   padding: 0;
 }
-/*
+
 
 ::-moz-selection {
   background-color: $accent-color;

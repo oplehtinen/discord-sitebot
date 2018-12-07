@@ -20,8 +20,8 @@
             <a href="/music">music<small> a collection made with ❤️</small></a>
           </li>
         </ul>
-        <h1>{{ title }}</h1>
-        {%- if subtitle %}<p class="subtitle">{{ subtitle }}</p>{% endif %}
+        <h1 class="text-big">{{ title }}</h1>
+        {%- if subtitle %}<p class="text-medium text-gray">{{ subtitle }}</p>{% endif %}
       </header>
       {{ content | safe }}
      
