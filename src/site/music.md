@@ -9,10 +9,10 @@ layout: layouts/base.njk
 
    <ul class="listing">
          {%- for page in collections.media -%}
-          <li>
-          <a href="{{ page.url }}">{{ page.data.title }}</a> -
-          <time datetime="{{ page.date }}">{{ page.date | dateDisplay }}</time>
-          </li>
+          <a href="{{ page.url }}"><div class=" aligner aligner--spaceBetween aligner--centerVertica rounded-corners mb-medium border">
+          <time class="badge badge--dark  m-none"  datetime="{{ page.date }}">{{ page.date | dateDisplay }}</time>
+          <div class="flex-grow bg-gray-light  p-medium text-right"><span class="text-medium text-secondary"><strong>{{ page.data.title }}</strong></span></div>
+          </div></a>
           {%- endfor -%}
        </ul>
 
