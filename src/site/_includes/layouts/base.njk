@@ -7,26 +7,33 @@
     <title>{{ title }}</title>
   </head>
   <body class="{{ bodyClass }}" >
-    <div class="container">
-      <header>
-        <ul class="nav">
-          <li>
-            <a href="/">home<small>where the heart is</small></a>
+    <div class="section p-small bg-dark">
+      <header class="container">
+      <h1 class="text-big text-white">Site_name placeholder</h1>
+      <p class="text-gray">Lorem ipsum dolor sit amet...</p>
+        <ul class="nav" >
+          <li class="badge">
+            <a href="/">home</a>
           </li>
-          <li>
-            <a href="/about">about<small>all about this</small></a>
+          <li class="badge">
+            <a href="/about">about</a>
           </li>
-          <li>
-            <a href="/music">music<small> a collection made with ❤️</small></a>
+          <li class="badge">
+            <a href="/music">music</a>
           </li>
         </ul>
-        <h1 class="text-big">{{ title }}</h1>
-        {%- if subtitle %}<p class="text-medium text-gray">{{ subtitle }}</p>{% endif %}
-      </header>
-      {{ content | safe }}
+         </header>
+        </div>
+        <div class="container">
+        <div class="section">
+        <h1 class="text-huge">{{ title }}</h1>
+          {%- if subtitle %}<p class="text-medium text-gray">{{ subtitle }}</p>{% endif %}
+
+           {{ content | safe }}
+           </div>
      
-      {% include "footer.njk" %}
-    </div>
+         {% include "footer.njk" %}
+        </div>
   </body>
 </html>
 

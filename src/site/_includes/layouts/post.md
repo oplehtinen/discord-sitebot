@@ -4,13 +4,13 @@ pageClass: posts
 templateEngineOverride: njk, md
 ---
 
-<p class="date">
-  Posted as an example, on <time datetime="{{ date }}">{{ date | dateDisplay }}</time>
+<p class="date tag text-uppercase ">
+  <time datetime="{{ date }}">{{ date | dateDisplay }}</time>
 </p>
 <main>
   {{ content | safe }}
   <div class="footnote">
-    <p>
+    <p class="text-gray">
       This is a work in progress.
     </p>
   </div>

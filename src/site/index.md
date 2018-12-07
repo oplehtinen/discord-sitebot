@@ -22,11 +22,11 @@ From this point we should already have:
 The pages found in in the posts
 
    <ul class="listing">
-         {%- for page in collections.post -%}
-          <li>
-          <a href="{{ page.url }}">{{ page.data.title }}</a> -
-          <time datetime="{{ page.date }}">{{ page.date | dateDisplay }}</time>
-          </li>
+         {%- for page in collections.post | reverse -%}
+          <a href="{{ page.url }}"><div class=" aligner aligner--spaceBetween aligner--centerVertica rounded-corners mb-medium border">
+          <time class="badge badge--dark  m-none"  datetime="{{ page.date }}">{{ page.date | dateDisplay }}</time>
+          <div class="flex-grow bg-gray-light  p-medium text-right"><span class="text-medium text-secondary"><strong>{{ page.data.title }}</strong></span></div>
+          </div></a>
           {%- endfor -%}
        </ul>
 

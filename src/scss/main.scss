@@ -1,6 +1,33 @@
 @import '_variables';
 @import '_mixins';
 @import 'node_modules/sierra-library/lib/index';
+@import 'node_modules/sierra-library/lib/_settings';
+
+h1, h2, h3 {
+  margin-bottom: 1em;
+  font-weight:inherit;
+}
+
+h1 {
+  font-size: $fz-huge;
+  line-height: $lh-huge;
+}
+
+h2 {
+  font-size: $fz-big;
+  line-height: $lh-big;
+}
+
+h3 {
+  font-size: $fz-medium;
+  line-height: $lh-medium;
+}
+
+small {
+  font-size: $fz-small;
+  line-height: $lh-small;
+}
+
 /*
 * {
   margin: 0;
