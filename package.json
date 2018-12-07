@@ -4,7 +4,12 @@
   "description": "A tool for managing site content through Discord channels.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gen": "gulp generate",
+    "start": "yarn run build && yarn run serve",
+    "build": "gulp build && yarn run build:functions",
+    "build:local": "gulp build:local",
+    "build:functions": "netlify-lambda build src/lambda",
+    "serve": "gulp watch & gulp serve & netlify-lambda serve src/lambda"
   },
   "keywords": [
     "bot",
@@ -13,21 +18,17 @@
   "author": "Olli-Pekka Lehtinen",
   "license": "ISC",
   "private": "true",
-  "scripts": {
-    "gen": "gulp generate",
-    "start": "yarn run build && yarn run serve",
-    "build": "gulp build && yarn run build:functions",
-    "build:local": "gulp build:local",
-    "build:functions": "netlify-lambda build src/lambda",
-    "serve": "gulp watch & gulp serve & netlify-lambda serve src/lambda"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/philhawksworth/eleventyone"
   },
   "dependencies": {
     "@11ty/eleventy": "^0.5.2",
+    "autolinker": "^1.6.2",
+    "cheerio": "^1.0.0-rc.2",
     "concurrent-transform": "^1.0.0",
+    "discord.js": "^11.3.2",
+    "eslint": "^4.19.1",
     "gravatar": "^1.6.0",
     "gulp": "^4.0.0",
     "gulp-clean": "^0.4.0",
@@ -40,14 +41,11 @@
     "gulp-uglify": "^3.0.0",
     "netlify-lambda": "^0.2.0",
     "pump": "^3.0.0",
-    "require-dir": "^1.0.0",
-    "autolinker": "^1.6.2",
-    "cheerio": "^1.0.0-rc.2",
-    "discord.js": "^11.3.2",
-    "eslint": "^4.19.1",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "require-dir": "^1.0.0",
+    "sierra-library": "^3.1.0"
   },
   "proxy": {
     "/.netlify/functions": {
